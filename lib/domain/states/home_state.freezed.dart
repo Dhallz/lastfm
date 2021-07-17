@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
-  _HomeState call({List<Album> albums = const []}) {
+  _HomeState call({List<Album> albums = const <Album>[]}) {
     return _HomeState(
       albums: albums,
     );
@@ -97,9 +97,9 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState({this.albums = const []});
+  const _$_HomeState({this.albums = const <Album>[]});
 
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: const <Album>[])
   @override
   final List<Album> albums;
 

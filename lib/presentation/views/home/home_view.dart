@@ -10,7 +10,6 @@ class HomeView extends GetView<HomeViewController> {
   HomeView({Key? key}) : super(key: key);
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final autoValidateForm = AutovalidateMode.always.obs;
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart' as getx;
 import 'package:lastfm/domain/entities/album.dart';
-import 'package:lastfm/domain/entities/cover.dart';
+import 'package:lastfm/domain/entities/album_details.dart';
 import 'package:lastfm/domain/repositories/i_album_repository.dart';
 import 'package:lastfm/domain/repositories/i_rest_api_repository.dart';
 import 'package:lastfm/infrastructure/api/rest/rest_api_client.dart';
@@ -17,14 +15,14 @@ class AlbumRepository extends IRestApiRepository implements IAlbumRepository {
         );
 
   @override
-  Future<Either<RestApiError, Album>> getAlbumById(
+  Future<Either<RestApiError, AlbumDetails>> getAlbumDetailsById(
       {required String mbid}) async {
-    return await handlingGetResponse<Album>(
+    return await handlingGetResponse<AlbumDetails>(
       query: restApi.client.request('', queryParameters: {
         "method": "$method.getinfo",
         "mbid": mbid,
       }),
-      onSucces: (success) => Album.fromJson(success.data?['album']),
+      onSucces: (success) => AlbumDetails.fromJson(success.data?['album']),
       onError: (error) => error,
     );
   }
@@ -40,6 +38,20 @@ class AlbumRepository extends IRestApiRepository implements IAlbumRepository {
       onSucces: (success) => success.data?['results']['albummatches']['album']
           .map<Album>((e) => Album.fromJson(e))
           .toList(),
+      onError: (error) => error,
+    );
+  }
+
+  @override
+  Future<Either<RestApiError, AlbumDetails>> getAlbumDetailsByNameAndArtist(
+      {required String name, required String artist}) async {
+    return await handlingGetResponse<AlbumDetails>(
+      query: restApi.client.request('', queryParameters: {
+        "method": "$method.getinfo",
+        "album": name,
+        "artist": artist,
+      }),
+      onSucces: (success) => AlbumDetails.fromJson(success.data?['album']),
       onError: (error) => error,
     );
   }

@@ -24,12 +24,14 @@ class _$AlbumTearOff {
       {@JsonKey(name: 'name') String name = '',
       @JsonKey(name: 'image') required List<Cover> cover,
       @JsonKey(name: 'url') String url = '',
-      @JsonKey(name: 'artist') String artist = ''}) {
+      @JsonKey(name: 'artist') String artist = '',
+      @JsonKey(name: 'mbid', includeIfNull: false) String mbid = ''}) {
     return _Album(
       name: name,
       cover: cover,
       url: url,
       artist: artist,
+      mbid: mbid,
     );
   }
 
@@ -51,6 +53,8 @@ mixin _$Album {
   String get url => throw _privateConstructorUsedError;
   @JsonKey(name: 'artist')
   String get artist => throw _privateConstructorUsedError;
+  @JsonKey(name: 'mbid', includeIfNull: false)
+  String get mbid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +69,8 @@ abstract class $AlbumCopyWith<$Res> {
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'image') List<Cover> cover,
       @JsonKey(name: 'url') String url,
-      @JsonKey(name: 'artist') String artist});
+      @JsonKey(name: 'artist') String artist,
+      @JsonKey(name: 'mbid', includeIfNull: false) String mbid});
 }
 
 /// @nodoc
@@ -82,6 +87,7 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
     Object? cover = freezed,
     Object? url = freezed,
     Object? artist = freezed,
+    Object? mbid = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -100,6 +106,10 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
               as String,
+      mbid: mbid == freezed
+          ? _value.mbid
+          : mbid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -113,7 +123,8 @@ abstract class _$AlbumCopyWith<$Res> implements $AlbumCopyWith<$Res> {
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'image') List<Cover> cover,
       @JsonKey(name: 'url') String url,
-      @JsonKey(name: 'artist') String artist});
+      @JsonKey(name: 'artist') String artist,
+      @JsonKey(name: 'mbid', includeIfNull: false) String mbid});
 }
 
 /// @nodoc
@@ -131,6 +142,7 @@ class __$AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
     Object? cover = freezed,
     Object? url = freezed,
     Object? artist = freezed,
+    Object? mbid = freezed,
   }) {
     return _then(_Album(
       name: name == freezed
@@ -149,6 +161,10 @@ class __$AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
               as String,
+      mbid: mbid == freezed
+          ? _value.mbid
+          : mbid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -160,7 +176,8 @@ class _$_Album implements _Album {
       {@JsonKey(name: 'name') this.name = '',
       @JsonKey(name: 'image') required this.cover,
       @JsonKey(name: 'url') this.url = '',
-      @JsonKey(name: 'artist') this.artist = ''});
+      @JsonKey(name: 'artist') this.artist = '',
+      @JsonKey(name: 'mbid', includeIfNull: false) this.mbid = ''});
 
   factory _$_Album.fromJson(Map<String, dynamic> json) =>
       _$_$_AlbumFromJson(json);
@@ -177,10 +194,13 @@ class _$_Album implements _Album {
   @override
   @JsonKey(name: 'artist')
   final String artist;
+  @override
+  @JsonKey(name: 'mbid', includeIfNull: false)
+  final String mbid;
 
   @override
   String toString() {
-    return 'Album(name: $name, cover: $cover, url: $url, artist: $artist)';
+    return 'Album(name: $name, cover: $cover, url: $url, artist: $artist, mbid: $mbid)';
   }
 
   @override
@@ -194,7 +214,9 @@ class _$_Album implements _Album {
             (identical(other.url, url) ||
                 const DeepCollectionEquality().equals(other.url, url)) &&
             (identical(other.artist, artist) ||
-                const DeepCollectionEquality().equals(other.artist, artist)));
+                const DeepCollectionEquality().equals(other.artist, artist)) &&
+            (identical(other.mbid, mbid) ||
+                const DeepCollectionEquality().equals(other.mbid, mbid)));
   }
 
   @override
@@ -203,7 +225,8 @@ class _$_Album implements _Album {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(cover) ^
       const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(artist);
+      const DeepCollectionEquality().hash(artist) ^
+      const DeepCollectionEquality().hash(mbid);
 
   @JsonKey(ignore: true)
   @override
@@ -221,7 +244,8 @@ abstract class _Album implements Album {
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'image') required List<Cover> cover,
       @JsonKey(name: 'url') String url,
-      @JsonKey(name: 'artist') String artist}) = _$_Album;
+      @JsonKey(name: 'artist') String artist,
+      @JsonKey(name: 'mbid', includeIfNull: false) String mbid}) = _$_Album;
 
   factory _Album.fromJson(Map<String, dynamic> json) = _$_Album.fromJson;
 
@@ -237,6 +261,9 @@ abstract class _Album implements Album {
   @override
   @JsonKey(name: 'artist')
   String get artist => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'mbid', includeIfNull: false)
+  String get mbid => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AlbumCopyWith<_Album> get copyWith => throw _privateConstructorUsedError;

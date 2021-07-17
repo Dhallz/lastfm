@@ -11,7 +11,7 @@ class Album with _$Album {
     @JsonKey(name: 'image') required List<Cover> cover,
     @Default('') @JsonKey(name: 'url') String url,
     @Default('') @JsonKey(name: 'artist') String artist,
-    // @Default('') @JsonKey(name: 'mbid') String mbid,
+    @Default('') @JsonKey(name: 'mbid', includeIfNull: false) String mbid,
   }) = _Album;
 
   factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);

@@ -14,6 +14,7 @@ _$_Album _$_$_AlbumFromJson(Map<String, dynamic> json) {
         .toList(),
     url: json['url'] as String,
     artist: json['artist'] as String,
+    mbid: json['mbid'] as String,
   );
 }
 
@@ -22,4 +23,5 @@ Map<String, dynamic> _$_$_AlbumToJson(_$_Album instance) => <String, dynamic>{
       'image': instance.cover,
       'url': instance.url,
       'artist': instance.artist,
+      'mbid': instance.mbid,
     };

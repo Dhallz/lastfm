@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart' as getx;
 import 'package:lastfm/infrastructure/environment/env.dart';
 
@@ -11,7 +12,7 @@ class RestApiInterceptor extends RestApiLogger {
       'api_key': getx.Get.find<Env>().apiKey,
       "format": "json",
     });
-
+    debugPrint(options.uri.path);
     return super.onRequest(options, handler);
   }
 
