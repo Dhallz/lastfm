@@ -14,36 +14,33 @@ class AlbumCard extends GetView<HomeViewController> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        // image: DecorationImage(
-        //   image: NetworkImage(album.url),
-        //   fit: BoxFit.fill,
-        // ),
-      ),
-      child: Card(
-        color: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        elevation: 10,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Padding(
-              //   padding: const EdgeInsets.only(right: 16.0),
-              //   child: CircleAvatar(
-              //     foregroundColor: Colors.black,
-              //     minRadius: 30,
-              //     backgroundImage: NetworkImage(album.imageUrl),
-              //   ),
-              // ),
-              Container(
-                child: Center(
-                  child: Text('name'),
-                ),
-              )
-            ],
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            image: NetworkImage(album.cover[3].url),
+            fit: BoxFit.cover,
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black,
+              offset: Offset(2, 2), //(x,y)
+              blurRadius: 3.0,
+            ),
+          ]),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 16.0),
+            //   child: CircleAvatar(
+            //     foregroundColor: Colors.black,
+            //     minRadius: 30,
+            //     backgroundImage: NetworkImage(album.cover.first.url),
+            //   ),
+            // ),
+            Expanded(child: Text(album.name))
+          ],
         ),
       ),
     );

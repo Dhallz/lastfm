@@ -21,9 +21,13 @@ class _$AlbumTearOff {
   const _$AlbumTearOff();
 
   _Album call(
-      {required String name, required String url, required String artist}) {
+      {@JsonKey(name: 'name') String name = '',
+      @JsonKey(name: 'image') required List<Cover> cover,
+      @JsonKey(name: 'url') String url = '',
+      @JsonKey(name: 'artist') String artist = ''}) {
     return _Album(
       name: name,
+      cover: cover,
       url: url,
       artist: artist,
     );
@@ -39,9 +43,13 @@ const $Album = _$AlbumTearOff();
 
 /// @nodoc
 mixin _$Album {
-  String get name =>
-      throw _privateConstructorUsedError; // required String imageUrl,
+  @JsonKey(name: 'name')
+  String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
+  List<Cover> get cover => throw _privateConstructorUsedError;
+  @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
+  @JsonKey(name: 'artist')
   String get artist => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,7 +61,11 @@ mixin _$Album {
 abstract class $AlbumCopyWith<$Res> {
   factory $AlbumCopyWith(Album value, $Res Function(Album) then) =
       _$AlbumCopyWithImpl<$Res>;
-  $Res call({String name, String url, String artist});
+  $Res call(
+      {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'image') List<Cover> cover,
+      @JsonKey(name: 'url') String url,
+      @JsonKey(name: 'artist') String artist});
 }
 
 /// @nodoc
@@ -67,6 +79,7 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
   @override
   $Res call({
     Object? name = freezed,
+    Object? cover = freezed,
     Object? url = freezed,
     Object? artist = freezed,
   }) {
@@ -75,6 +88,10 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      cover: cover == freezed
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as List<Cover>,
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -92,7 +109,11 @@ abstract class _$AlbumCopyWith<$Res> implements $AlbumCopyWith<$Res> {
   factory _$AlbumCopyWith(_Album value, $Res Function(_Album) then) =
       __$AlbumCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String url, String artist});
+  $Res call(
+      {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'image') List<Cover> cover,
+      @JsonKey(name: 'url') String url,
+      @JsonKey(name: 'artist') String artist});
 }
 
 /// @nodoc
@@ -107,6 +128,7 @@ class __$AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
+    Object? cover = freezed,
     Object? url = freezed,
     Object? artist = freezed,
   }) {
@@ -115,6 +137,10 @@ class __$AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      cover: cover == freezed
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as List<Cover>,
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -130,21 +156,31 @@ class __$AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Album implements _Album {
-  const _$_Album({required this.name, required this.url, required this.artist});
+  const _$_Album(
+      {@JsonKey(name: 'name') this.name = '',
+      @JsonKey(name: 'image') required this.cover,
+      @JsonKey(name: 'url') this.url = '',
+      @JsonKey(name: 'artist') this.artist = ''});
 
   factory _$_Album.fromJson(Map<String, dynamic> json) =>
       _$_$_AlbumFromJson(json);
 
   @override
+  @JsonKey(name: 'name')
   final String name;
-  @override // required String imageUrl,
+  @override
+  @JsonKey(name: 'image')
+  final List<Cover> cover;
+  @override
+  @JsonKey(name: 'url')
   final String url;
   @override
+  @JsonKey(name: 'artist')
   final String artist;
 
   @override
   String toString() {
-    return 'Album(name: $name, url: $url, artist: $artist)';
+    return 'Album(name: $name, cover: $cover, url: $url, artist: $artist)';
   }
 
   @override
@@ -153,6 +189,8 @@ class _$_Album implements _Album {
         (other is _Album &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.cover, cover) ||
+                const DeepCollectionEquality().equals(other.cover, cover)) &&
             (identical(other.url, url) ||
                 const DeepCollectionEquality().equals(other.url, url)) &&
             (identical(other.artist, artist) ||
@@ -163,6 +201,7 @@ class _$_Album implements _Album {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(cover) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(artist);
 
@@ -179,17 +218,24 @@ class _$_Album implements _Album {
 
 abstract class _Album implements Album {
   const factory _Album(
-      {required String name,
-      required String url,
-      required String artist}) = _$_Album;
+      {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'image') required List<Cover> cover,
+      @JsonKey(name: 'url') String url,
+      @JsonKey(name: 'artist') String artist}) = _$_Album;
 
   factory _Album.fromJson(Map<String, dynamic> json) = _$_Album.fromJson;
 
   @override
+  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-  @override // required String imageUrl,
+  @override
+  @JsonKey(name: 'image')
+  List<Cover> get cover => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'artist')
   String get artist => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

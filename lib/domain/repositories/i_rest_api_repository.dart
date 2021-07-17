@@ -18,11 +18,10 @@ abstract class IRestApiRepository {
   }) : _method = method;
 }
 
-/// Make the query on [queryResponse] then do something [onSucces].
+/// Make the query on [query] then return either [onSucces] or [onError].
 /// [HttpErrors] are auto handled.
 Future<Either<RestApiError, T>> handlingGetResponse<T>({
   required Future<Response<Map<String, dynamic>>> query,
-  // Map<String, dynamic>? queryParameters,
   required T Function(Response<Map<String, dynamic>> success) onSucces,
   required RestApiError Function(RestApiError error) onError,
 }) async {
@@ -33,7 +32,8 @@ Future<Either<RestApiError, T>> handlingGetResponse<T>({
   } on DioError catch (err) {
     return left(onError(err.handlingHttpErrors));
   } catch (e) {
-    return left(RestApiError(message: 'Bad value from API : ${e.toString()}'));
+    return left(RestApiError(
+        message: 'Bad value either from API or from Model: ${e.toString()}'));
   }
 }
 

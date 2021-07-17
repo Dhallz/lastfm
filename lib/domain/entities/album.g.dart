@@ -9,6 +9,9 @@ part of 'album.dart';
 _$_Album _$_$_AlbumFromJson(Map<String, dynamic> json) {
   return _$_Album(
     name: json['name'] as String,
+    cover: (json['image'] as List<dynamic>)
+        .map((e) => Cover.fromJson(e as Map<String, dynamic>))
+        .toList(),
     url: json['url'] as String,
     artist: json['artist'] as String,
   );
@@ -16,6 +19,7 @@ _$_Album _$_$_AlbumFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_AlbumToJson(_$_Album instance) => <String, dynamic>{
       'name': instance.name,
+      'image': instance.cover,
       'url': instance.url,
       'artist': instance.artist,
     };

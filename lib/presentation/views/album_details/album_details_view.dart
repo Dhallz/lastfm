@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'details_view_controller.dart';
+import 'album_details_view_controller.dart';
 
-class DetailsView extends GetView<DetailsViewController> {
-  DetailsView({Key? key}) : super(key: key);
+class AlbumDetailsView extends GetView<AlbumDetailsViewController> {
+  AlbumDetailsView({Key? key}) : super(key: key);
 
   final autoValidateForm = AutovalidateMode.always.obs;
 

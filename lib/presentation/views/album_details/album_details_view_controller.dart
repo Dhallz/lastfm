@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class DetailsViewController extends GetxController with StateMixin {
-  DetailsViewController();
+class AlbumDetailsViewController extends GetxController with StateMixin {
+  AlbumDetailsViewController();
 
   @override
   void onInit() {
