@@ -9,8 +9,8 @@ class Env extends GetxService {
 
   EnvType env = EnvType.dev();
 
-  String defaultUsername = 'dhawud@gmail.com';
-  String defaultPassword = 'oeil.69006';
+  String defaultUsername = '';
+  String defaultPassword = '';
 
   bool get showDebugBanner => env != EnvType.prod();
 
