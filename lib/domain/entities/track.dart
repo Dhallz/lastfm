@@ -7,6 +7,7 @@ part 'track.g.dart';
 class Track with _$Track {
   const factory Track({
     @Default('') @JsonKey(name: 'name') String name,
+    @Default('') @JsonKey(name: 'url') String url,
     @Default(0) @JsonKey(name: 'duration') int duration,
   }) = _Track;
 

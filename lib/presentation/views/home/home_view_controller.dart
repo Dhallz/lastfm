@@ -19,7 +19,15 @@ class HomeViewController extends GetxController with StateMixin<HomeState> {
 
   @override
   void onReady() async {
-    change(HomeState(), status: RxStatus.success());
+    change(
+        HomeState(
+            albums: await albumRepository.searchAlbumsByName(name: 'a').then(
+                  (either) => either.fold(
+                    (l) => [],
+                    (r) => r,
+                  ),
+                )),
+        status: RxStatus.success());
     super.onReady();
   }
 

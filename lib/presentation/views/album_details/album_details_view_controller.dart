@@ -19,18 +19,22 @@ class AlbumDetailsViewController extends GetxController
 
   @override
   void onReady() async {
-    change(
-        AlbumDetailsState(
-            albumDetails: await albumRepository
-                .getAlbumDetailsByNameAndArtist(
-                  name: Get.parameters['name']!,
-                  artist: Get.parameters['artist']!,
-                )
-                .then((either) => either.fold(
-                      (l) => AlbumDetails(),
-                      (r) => r,
-                    ))),
-        status: RxStatus.success());
+    AlbumDetails? test = await albumRepository
+        .getAlbumDetailsByNameAndArtist(
+          name: Get.parameters['name']!,
+          artist: Get.parameters['artist']!,
+        )
+        .then((either) => either.fold(
+              (l) => null,
+              (r) => r,
+            ));
+
+    if (test == null) {
+      change(null, status: RxStatus.error());
+    } else {
+      change(AlbumDetailsState(albumDetails: test), status: RxStatus.success());
+    }
+
     super.onReady();
   }
 

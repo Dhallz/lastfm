@@ -22,9 +22,11 @@ class _$TrackTearOff {
 
   _Track call(
       {@JsonKey(name: 'name') String name = '',
+      @JsonKey(name: 'url') String url = '',
       @JsonKey(name: 'duration') int duration = 0}) {
     return _Track(
       name: name,
+      url: url,
       duration: duration,
     );
   }
@@ -41,6 +43,8 @@ const $Track = _$TrackTearOff();
 mixin _$Track {
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'url')
+  String get url => throw _privateConstructorUsedError;
   @JsonKey(name: 'duration')
   int get duration => throw _privateConstructorUsedError;
 
@@ -55,6 +59,7 @@ abstract class $TrackCopyWith<$Res> {
       _$TrackCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'url') String url,
       @JsonKey(name: 'duration') int duration});
 }
 
@@ -69,12 +74,17 @@ class _$TrackCopyWithImpl<$Res> implements $TrackCopyWith<$Res> {
   @override
   $Res call({
     Object? name = freezed,
+    Object? url = freezed,
     Object? duration = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
       duration: duration == freezed
           ? _value.duration
@@ -91,6 +101,7 @@ abstract class _$TrackCopyWith<$Res> implements $TrackCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'url') String url,
       @JsonKey(name: 'duration') int duration});
 }
 
@@ -106,12 +117,17 @@ class __$TrackCopyWithImpl<$Res> extends _$TrackCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
+    Object? url = freezed,
     Object? duration = freezed,
   }) {
     return _then(_Track(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
       duration: duration == freezed
           ? _value.duration
@@ -126,6 +142,7 @@ class __$TrackCopyWithImpl<$Res> extends _$TrackCopyWithImpl<$Res>
 class _$_Track implements _Track {
   const _$_Track(
       {@JsonKey(name: 'name') this.name = '',
+      @JsonKey(name: 'url') this.url = '',
       @JsonKey(name: 'duration') this.duration = 0});
 
   factory _$_Track.fromJson(Map<String, dynamic> json) =>
@@ -135,12 +152,15 @@ class _$_Track implements _Track {
   @JsonKey(name: 'name')
   final String name;
   @override
+  @JsonKey(name: 'url')
+  final String url;
+  @override
   @JsonKey(name: 'duration')
   final int duration;
 
   @override
   String toString() {
-    return 'Track(name: $name, duration: $duration)';
+    return 'Track(name: $name, url: $url, duration: $duration)';
   }
 
   @override
@@ -149,6 +169,8 @@ class _$_Track implements _Track {
         (other is _Track &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
             (identical(other.duration, duration) ||
                 const DeepCollectionEquality()
                     .equals(other.duration, duration)));
@@ -158,6 +180,7 @@ class _$_Track implements _Track {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(duration);
 
   @JsonKey(ignore: true)
@@ -174,6 +197,7 @@ class _$_Track implements _Track {
 abstract class _Track implements Track {
   const factory _Track(
       {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'url') String url,
       @JsonKey(name: 'duration') int duration}) = _$_Track;
 
   factory _Track.fromJson(Map<String, dynamic> json) = _$_Track.fromJson;
@@ -181,6 +205,9 @@ abstract class _Track implements Track {
   @override
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'url')
+  String get url => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'duration')
   int get duration => throw _privateConstructorUsedError;

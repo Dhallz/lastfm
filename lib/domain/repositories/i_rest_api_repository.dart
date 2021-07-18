@@ -40,13 +40,13 @@ Future<Either<RestApiError, T>> handlingDioResponse<T>({
     return left(onError(err.handlingHttpErrors));
   } catch (e) {
     debugPrint(e.toString());
-    getx.Get.back();
+    // getx.Get.back();
     RestApiError err = RestApiError(
         message: 'Bad value either from API or from Model: ${e.toString()}');
-    errorSnackBar(
-      title: 'Serialization',
-      message: err.message,
-    );
+    // errorSnackBar(
+    //   title: 'Serialization',
+    //   message: err.message,
+    // );
     return left(err);
   }
 }

@@ -26,7 +26,7 @@ void runMainApp() async {
         title: 'lastfm',
         initialRoute: Routes.initialRoute,
         getPages: Navigation.getRoutes,
-        defaultTransition: Transition.fadeIn,
+        defaultTransition: Transition.cupertino,
         enableLog: true,
         themeMode: ThemeMode.dark,
         theme: ThemeData.light(),

@@ -32,7 +32,7 @@ class _SplashState extends State<Splash> {
     // >>> register favorite dependency manager <<<
     // >>> reap benefits <<<
     Future.delayed(
-      Duration(milliseconds: 3000),
+      Duration(milliseconds: 1000),
       () => widget.onInitializationComplete(),
     );
   }

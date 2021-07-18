@@ -24,23 +24,29 @@ class HomeView extends GetView<HomeViewController> {
       body: controller.obx(
         (state) => Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              padding: EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: Form(
-                          key: _formKey,
-                          child: AlbumSearchFormField(
-                            input: controller.searchInput,
-                          ),
-                        )),
-                        IconButton(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      Form(
+                        key: _formKey,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        child: AlbumSearchFormField(
+                          input: controller.searchInput,
+                          onFieldSubmitted: (_) {
+                            if (_formKey.currentState!.validate()) {
+                              controller.searchAlbumsByName(
+                                  controller.searchInput.value);
+                            }
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        right: 0,
+                        child: IconButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               controller.searchAlbumsByName(
@@ -48,52 +54,58 @@ class HomeView extends GetView<HomeViewController> {
                             }
                           },
                           icon: Icon(Icons.search),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0, bottom: 32),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Icon(Icons.album),
-                        Icon(
-                          Icons.art_track,
-                          color: Colors.grey,
                         ),
-                        Icon(
-                          Icons.art_track_sharp,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                  Expanded(
-                    child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 200,
-                          childAspectRatio: 1 / 1,
-                          crossAxisSpacing: 20,
-                          mainAxisSpacing: 20,
-                        ),
-                        itemCount: controller.state?.albums.length,
-                        itemBuilder: (BuildContext context, index) {
-                          return AlbumCard(
-                            album: controller.state!.albums[index],
-                          );
-                        }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0, bottom: 32),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(Icons.album),
+                      Icon(
+                        Icons.art_track,
+                        color: Colors.grey,
+                      ),
+                      Icon(
+                        Icons.art_track_sharp,
+                        color: Colors.grey,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        childAspectRatio: 1 / 1.2,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                      ),
+                      itemCount: controller.state?.albums.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return AlbumCard(
+                          album: controller.state!.albums[index],
+                        );
+                      }),
+                ),
+              ],
             ),
           ),
         ),
-        onLoading: Center(child: LinearProgressIndicator()),
+        onLoading: Center(child: CupertinoActivityIndicator()),
         onEmpty: Container(),
-        onError: (error) => Center(
-          child: Text(error!),
-        ),
+        onError: (error) {
+          Future.delayed(
+            Duration(milliseconds: 1000),
+            () => Get.back(closeOverlays: false),
+          );
+          return Center(
+            child: Text(error ?? 'Oups ! Something went wrong :('),
+          );
+        },
       ),
     );
   }
