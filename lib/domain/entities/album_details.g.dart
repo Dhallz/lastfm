@@ -12,6 +12,9 @@ _$_AlbumDetails _$_$_AlbumDetailsFromJson(Map<String, dynamic> json) {
     cover: (json['image'] as List<dynamic>)
         .map((e) => Cover.fromJson(e as Map<String, dynamic>))
         .toList(),
+    albumTracks: json['tracks'] == null
+        ? null
+        : AlbumTracks.fromJson(json['tracks'] as Map<String, dynamic>),
     url: json['url'] as String,
     name: json['name'] as String,
     listeners: json['listeners'] as String,
@@ -26,6 +29,7 @@ Map<String, dynamic> _$_$_AlbumDetailsToJson(_$_AlbumDetails instance) =>
     <String, dynamic>{
       'artist': instance.artist,
       'image': instance.cover,
+      'tracks': instance.albumTracks,
       'url': instance.url,
       'name': instance.name,
       'listeners': instance.listeners,

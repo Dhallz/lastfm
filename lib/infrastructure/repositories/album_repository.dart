@@ -17,10 +17,10 @@ class AlbumRepository extends IRestApiRepository implements IAlbumRepository {
   @override
   Future<Either<RestApiError, AlbumDetails>> getAlbumDetailsById(
       {required String mbid}) async {
-    return await handlingGetResponse<AlbumDetails>(
+    return await handlingDioResponse<AlbumDetails>(
       query: restApi.client.request('', queryParameters: {
-        "method": "$method.getinfo",
-        "mbid": mbid,
+        'method': '$method.getinfo',
+        'mbid': mbid,
       }),
       onSucces: (success) => AlbumDetails.fromJson(success.data?['album']),
       onError: (error) => error,
@@ -30,10 +30,10 @@ class AlbumRepository extends IRestApiRepository implements IAlbumRepository {
   @override
   Future<Either<RestApiError, List<Album>>> searchAlbumsByName(
       {required String name}) async {
-    return await handlingGetResponse<List<Album>>(
+    return await handlingDioResponse<List<Album>>(
       query: restApi.client.request('', queryParameters: {
-        "method": "$method.search",
-        "album": name,
+        'method': '$method.search',
+        'album': name,
       }),
       onSucces: (success) => success.data?['results']['albummatches']['album']
           .map<Album>((e) => Album.fromJson(e))
@@ -45,11 +45,11 @@ class AlbumRepository extends IRestApiRepository implements IAlbumRepository {
   @override
   Future<Either<RestApiError, AlbumDetails>> getAlbumDetailsByNameAndArtist(
       {required String name, required String artist}) async {
-    return await handlingGetResponse<AlbumDetails>(
+    return await handlingDioResponse<AlbumDetails>(
       query: restApi.client.request('', queryParameters: {
-        "method": "$method.getinfo",
-        "album": name,
-        "artist": artist,
+        'method': '$method.getinfo',
+        'album': name,
+        'artist': artist,
       }),
       onSucces: (success) => AlbumDetails.fromJson(success.data?['album']),
       onError: (error) => error,

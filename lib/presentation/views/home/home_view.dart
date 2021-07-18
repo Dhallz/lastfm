@@ -14,7 +14,13 @@ class HomeView extends GetView<HomeViewController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Image(
+          image: AssetImage('assets/images/lastfm_title.png'),
+          fit: BoxFit.contain,
+          height: 90,
+        ),
+      ),
       body: controller.obx(
         (state) => Center(
           child: Padding(
@@ -23,7 +29,6 @@ class HomeView extends GetView<HomeViewController> {
               padding: EdgeInsets.all(16),
               child: Column(
                 children: [
-                  Text('Home'),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -44,6 +49,23 @@ class HomeView extends GetView<HomeViewController> {
                           },
                           icon: Icon(Icons.search),
                         )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0, bottom: 32),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Icon(Icons.album),
+                        Icon(
+                          Icons.art_track,
+                          color: Colors.grey,
+                        ),
+                        Icon(
+                          Icons.art_track_sharp,
+                          color: Colors.grey,
+                        ),
                       ],
                     ),
                   ),

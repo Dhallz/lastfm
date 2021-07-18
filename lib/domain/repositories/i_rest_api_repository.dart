@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart' as getx;
 import 'package:lastfm/infrastructure/api/rest/rest_api_error.dart';
 
 import '../../../infrastructure/api/rest/rest_api_client.dart';
@@ -20,7 +22,7 @@ abstract class IRestApiRepository {
 
 /// Make the query on [query] then return either [onSucces] or [onError].
 /// [HttpErrors] are auto handled.
-Future<Either<RestApiError, T>> handlingGetResponse<T>({
+Future<Either<RestApiError, T>> handlingDioResponse<T>({
   required Future<Response<Map<String, dynamic>>> query,
   required T Function(Response<Map<String, dynamic>> success) onSucces,
   required RestApiError Function(RestApiError error) onError,
@@ -30,11 +32,40 @@ Future<Either<RestApiError, T>> handlingGetResponse<T>({
       return right(onSucces(response));
     });
   } on DioError catch (err) {
+    errorSnackBar(
+      title: 'Oups',
+      code: err.handlingHttpErrors.error,
+      message: err.handlingHttpErrors.message,
+    );
     return left(onError(err.handlingHttpErrors));
   } catch (e) {
-    return left(RestApiError(
-        message: 'Bad value either from API or from Model: ${e.toString()}'));
+    debugPrint(e.toString());
+    getx.Get.back();
+    RestApiError err = RestApiError(
+        message: 'Bad value either from API or from Model: ${e.toString()}');
+    errorSnackBar(
+      title: 'Serialization',
+      message: err.message,
+    );
+    return left(err);
   }
+}
+
+void errorSnackBar({
+  String title = 'Information',
+  String? code,
+  String? message,
+}) {
+  getx.Get.snackbar(
+    title,
+    '${code ?? ''}\n${message ?? ''}',
+    borderColor: Colors.red,
+    borderWidth: 1,
+    icon: Icon(Icons.error_rounded),
+    snackPosition: getx.SnackPosition.TOP,
+    margin: const EdgeInsets.all(8),
+    duration: const Duration(seconds: 1),
+  );
 }
 
 extension OnDioError on DioError {

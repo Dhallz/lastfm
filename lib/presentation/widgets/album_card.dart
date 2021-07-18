@@ -16,7 +16,7 @@ class AlbumCard extends GetView<HomeViewController> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Get.toNamed(
-          "${Routes.ALBUM_DETAILS}?name=${album.name}&artist=${album.artist}"),
+          '${Routes.ALBUM_DETAILS}?name=${album.name}&artist=${album.artist}'),
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),

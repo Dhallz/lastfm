@@ -10,19 +10,19 @@ class RestApiInterceptor extends RestApiLogger {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.queryParameters.addAll({
       'api_key': getx.Get.find<Env>().apiKey,
-      "format": "json",
+      'format': 'json',
     });
     debugPrint(options.uri.path);
     return super.onRequest(options, handler);
   }
 
   @override
-  onResponse(Response response, ResponseInterceptorHandler handler) {
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
     return super.onResponse(response, handler);
   }
 
   @override
-  onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioError err, ErrorInterceptorHandler handler) {
     return super.onError(err, handler);
   }
 }

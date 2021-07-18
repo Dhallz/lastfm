@@ -21,16 +21,26 @@ class _$AlbumDetailsTearOff {
   const _$AlbumDetailsTearOff();
 
   _AlbumDetails call(
-      {@JsonKey(name: 'artist') String artist = '',
-      @JsonKey(name: 'image') List<Cover> cover = const <Cover>[],
-      @JsonKey(name: 'url') String url = '',
-      @JsonKey(name: 'name') String name = '',
-      @JsonKey(name: 'listeners') String listeners = '0',
-      @JsonKey(name: 'playcount') String playcount = '0',
-      @JsonKey(name: 'wiki', required: false) Wiki? wiki = const Wiki()}) {
+      {@JsonKey(name: 'artist')
+          String artist = '',
+      @JsonKey(name: 'image')
+          List<Cover> cover = const <Cover>[],
+      @JsonKey(name: 'tracks')
+          AlbumTracks? albumTracks = const AlbumTracks(tracks: const <Track>[]),
+      @JsonKey(name: 'url')
+          String url = '',
+      @JsonKey(name: 'name')
+          String name = '',
+      @JsonKey(name: 'listeners')
+          String listeners = '0',
+      @JsonKey(name: 'playcount')
+          String playcount = '0',
+      @JsonKey(name: 'wiki', required: false)
+          Wiki? wiki = const Wiki()}) {
     return _AlbumDetails(
       artist: artist,
       cover: cover,
+      albumTracks: albumTracks,
       url: url,
       name: name,
       listeners: listeners,
@@ -53,6 +63,8 @@ mixin _$AlbumDetails {
   String get artist => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
   List<Cover> get cover => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tracks')
+  AlbumTracks? get albumTracks => throw _privateConstructorUsedError;
   @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
@@ -78,12 +90,14 @@ abstract class $AlbumDetailsCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'artist') String artist,
       @JsonKey(name: 'image') List<Cover> cover,
+      @JsonKey(name: 'tracks') AlbumTracks? albumTracks,
       @JsonKey(name: 'url') String url,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'listeners') String listeners,
       @JsonKey(name: 'playcount') String playcount,
       @JsonKey(name: 'wiki', required: false) Wiki? wiki});
 
+  $AlbumTracksCopyWith<$Res>? get albumTracks;
   $WikiCopyWith<$Res>? get wiki;
 }
 
@@ -99,6 +113,7 @@ class _$AlbumDetailsCopyWithImpl<$Res> implements $AlbumDetailsCopyWith<$Res> {
   $Res call({
     Object? artist = freezed,
     Object? cover = freezed,
+    Object? albumTracks = freezed,
     Object? url = freezed,
     Object? name = freezed,
     Object? listeners = freezed,
@@ -114,6 +129,10 @@ class _$AlbumDetailsCopyWithImpl<$Res> implements $AlbumDetailsCopyWith<$Res> {
           ? _value.cover
           : cover // ignore: cast_nullable_to_non_nullable
               as List<Cover>,
+      albumTracks: albumTracks == freezed
+          ? _value.albumTracks
+          : albumTracks // ignore: cast_nullable_to_non_nullable
+              as AlbumTracks?,
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -138,6 +157,17 @@ class _$AlbumDetailsCopyWithImpl<$Res> implements $AlbumDetailsCopyWith<$Res> {
   }
 
   @override
+  $AlbumTracksCopyWith<$Res>? get albumTracks {
+    if (_value.albumTracks == null) {
+      return null;
+    }
+
+    return $AlbumTracksCopyWith<$Res>(_value.albumTracks!, (value) {
+      return _then(_value.copyWith(albumTracks: value));
+    });
+  }
+
+  @override
   $WikiCopyWith<$Res>? get wiki {
     if (_value.wiki == null) {
       return null;
@@ -159,12 +189,15 @@ abstract class _$AlbumDetailsCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'artist') String artist,
       @JsonKey(name: 'image') List<Cover> cover,
+      @JsonKey(name: 'tracks') AlbumTracks? albumTracks,
       @JsonKey(name: 'url') String url,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'listeners') String listeners,
       @JsonKey(name: 'playcount') String playcount,
       @JsonKey(name: 'wiki', required: false) Wiki? wiki});
 
+  @override
+  $AlbumTracksCopyWith<$Res>? get albumTracks;
   @override
   $WikiCopyWith<$Res>? get wiki;
 }
@@ -183,6 +216,7 @@ class __$AlbumDetailsCopyWithImpl<$Res> extends _$AlbumDetailsCopyWithImpl<$Res>
   $Res call({
     Object? artist = freezed,
     Object? cover = freezed,
+    Object? albumTracks = freezed,
     Object? url = freezed,
     Object? name = freezed,
     Object? listeners = freezed,
@@ -198,6 +232,10 @@ class __$AlbumDetailsCopyWithImpl<$Res> extends _$AlbumDetailsCopyWithImpl<$Res>
           ? _value.cover
           : cover // ignore: cast_nullable_to_non_nullable
               as List<Cover>,
+      albumTracks: albumTracks == freezed
+          ? _value.albumTracks
+          : albumTracks // ignore: cast_nullable_to_non_nullable
+              as AlbumTracks?,
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -226,13 +264,22 @@ class __$AlbumDetailsCopyWithImpl<$Res> extends _$AlbumDetailsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AlbumDetails implements _AlbumDetails {
   const _$_AlbumDetails(
-      {@JsonKey(name: 'artist') this.artist = '',
-      @JsonKey(name: 'image') this.cover = const <Cover>[],
-      @JsonKey(name: 'url') this.url = '',
-      @JsonKey(name: 'name') this.name = '',
-      @JsonKey(name: 'listeners') this.listeners = '0',
-      @JsonKey(name: 'playcount') this.playcount = '0',
-      @JsonKey(name: 'wiki', required: false) this.wiki = const Wiki()});
+      {@JsonKey(name: 'artist')
+          this.artist = '',
+      @JsonKey(name: 'image')
+          this.cover = const <Cover>[],
+      @JsonKey(name: 'tracks')
+          this.albumTracks = const AlbumTracks(tracks: const <Track>[]),
+      @JsonKey(name: 'url')
+          this.url = '',
+      @JsonKey(name: 'name')
+          this.name = '',
+      @JsonKey(name: 'listeners')
+          this.listeners = '0',
+      @JsonKey(name: 'playcount')
+          this.playcount = '0',
+      @JsonKey(name: 'wiki', required: false)
+          this.wiki = const Wiki()});
 
   factory _$_AlbumDetails.fromJson(Map<String, dynamic> json) =>
       _$_$_AlbumDetailsFromJson(json);
@@ -243,6 +290,9 @@ class _$_AlbumDetails implements _AlbumDetails {
   @override
   @JsonKey(name: 'image')
   final List<Cover> cover;
+  @override
+  @JsonKey(name: 'tracks')
+  final AlbumTracks? albumTracks;
   @override
   @JsonKey(name: 'url')
   final String url;
@@ -261,7 +311,7 @@ class _$_AlbumDetails implements _AlbumDetails {
 
   @override
   String toString() {
-    return 'AlbumDetails(artist: $artist, cover: $cover, url: $url, name: $name, listeners: $listeners, playcount: $playcount, wiki: $wiki)';
+    return 'AlbumDetails(artist: $artist, cover: $cover, albumTracks: $albumTracks, url: $url, name: $name, listeners: $listeners, playcount: $playcount, wiki: $wiki)';
   }
 
   @override
@@ -272,6 +322,9 @@ class _$_AlbumDetails implements _AlbumDetails {
                 const DeepCollectionEquality().equals(other.artist, artist)) &&
             (identical(other.cover, cover) ||
                 const DeepCollectionEquality().equals(other.cover, cover)) &&
+            (identical(other.albumTracks, albumTracks) ||
+                const DeepCollectionEquality()
+                    .equals(other.albumTracks, albumTracks)) &&
             (identical(other.url, url) ||
                 const DeepCollectionEquality().equals(other.url, url)) &&
             (identical(other.name, name) ||
@@ -291,6 +344,7 @@ class _$_AlbumDetails implements _AlbumDetails {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(artist) ^
       const DeepCollectionEquality().hash(cover) ^
+      const DeepCollectionEquality().hash(albumTracks) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(listeners) ^
@@ -312,6 +366,7 @@ abstract class _AlbumDetails implements AlbumDetails {
   const factory _AlbumDetails(
       {@JsonKey(name: 'artist') String artist,
       @JsonKey(name: 'image') List<Cover> cover,
+      @JsonKey(name: 'tracks') AlbumTracks? albumTracks,
       @JsonKey(name: 'url') String url,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'listeners') String listeners,
@@ -327,6 +382,9 @@ abstract class _AlbumDetails implements AlbumDetails {
   @override
   @JsonKey(name: 'image')
   List<Cover> get cover => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'tracks')
+  AlbumTracks? get albumTracks => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;

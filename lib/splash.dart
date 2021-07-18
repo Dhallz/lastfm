@@ -32,7 +32,7 @@ class _SplashState extends State<Splash> {
     // >>> register favorite dependency manager <<<
     // >>> reap benefits <<<
     Future.delayed(
-      Duration(milliseconds: 100),
+      Duration(milliseconds: 3000),
       () => widget.onInitializationComplete(),
     );
   }
@@ -41,6 +41,8 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Splash Screen',
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData.dark(),
       home: _buildBody(),
     );
   }
@@ -55,10 +57,23 @@ class _SplashState extends State<Splash> {
       );
     }
     return Scaffold(
-      backgroundColor: Colors.blue,
       body: SafeArea(
         child: Center(
-          child: CupertinoActivityIndicator(),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                  radius: 60,
+                  child: Image(
+                    image: AssetImage('assets/images/lastfm_title.png'),
+                  )),
+              Padding(
+                padding: const EdgeInsets.all(64.0),
+                child: CupertinoActivityIndicator(),
+              ),
+            ],
+          ),
         ),
       ),
     );

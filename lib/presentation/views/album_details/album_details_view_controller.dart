@@ -21,7 +21,7 @@ class AlbumDetailsViewController extends GetxController
   void onReady() async {
     change(
         AlbumDetailsState(
-            album: await albumRepository
+            albumDetails: await albumRepository
                 .getAlbumDetailsByNameAndArtist(
                   name: Get.parameters['name']!,
                   artist: Get.parameters['artist']!,

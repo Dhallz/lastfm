@@ -16,7 +16,7 @@ class RestApiLogger extends Interceptor {
   }
 
   @override
-  onResponse(Response response, ResponseInterceptorHandler handler) {
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
     debugPrint('COMPUTE TIME : ${stopwatch.elapsed}');
     // - TOTAL : ${_computeTime.toString()}
     _computeTime = Duration();
@@ -24,7 +24,7 @@ class RestApiLogger extends Interceptor {
   }
 
   @override
-  onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioError err, ErrorInterceptorHandler handler) {
     print(
         'REQUEST[${err.requestOptions.method}] => PATH: ${err.requestOptions.path.isEmpty ? 'none' : 'options.path'}');
     return super.onError(err, handler);

@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AlbumDetailsStateTearOff {
   const _$AlbumDetailsStateTearOff();
 
-  _AlbumDetailsState call({AlbumDetails album = const AlbumDetails()}) {
+  _AlbumDetailsState call({AlbumDetails albumDetails = const AlbumDetails()}) {
     return _AlbumDetailsState(
-      album: album,
+      albumDetails: albumDetails,
     );
   }
 }
@@ -28,7 +28,7 @@ const $AlbumDetailsState = _$AlbumDetailsStateTearOff();
 
 /// @nodoc
 mixin _$AlbumDetailsState {
-  AlbumDetails get album => throw _privateConstructorUsedError;
+  AlbumDetails get albumDetails => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AlbumDetailsStateCopyWith<AlbumDetailsState> get copyWith =>
@@ -40,9 +40,9 @@ abstract class $AlbumDetailsStateCopyWith<$Res> {
   factory $AlbumDetailsStateCopyWith(
           AlbumDetailsState value, $Res Function(AlbumDetailsState) then) =
       _$AlbumDetailsStateCopyWithImpl<$Res>;
-  $Res call({AlbumDetails album});
+  $Res call({AlbumDetails albumDetails});
 
-  $AlbumDetailsCopyWith<$Res> get album;
+  $AlbumDetailsCopyWith<$Res> get albumDetails;
 }
 
 /// @nodoc
@@ -56,20 +56,20 @@ class _$AlbumDetailsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? album = freezed,
+    Object? albumDetails = freezed,
   }) {
     return _then(_value.copyWith(
-      album: album == freezed
-          ? _value.album
-          : album // ignore: cast_nullable_to_non_nullable
+      albumDetails: albumDetails == freezed
+          ? _value.albumDetails
+          : albumDetails // ignore: cast_nullable_to_non_nullable
               as AlbumDetails,
     ));
   }
 
   @override
-  $AlbumDetailsCopyWith<$Res> get album {
-    return $AlbumDetailsCopyWith<$Res>(_value.album, (value) {
-      return _then(_value.copyWith(album: value));
+  $AlbumDetailsCopyWith<$Res> get albumDetails {
+    return $AlbumDetailsCopyWith<$Res>(_value.albumDetails, (value) {
+      return _then(_value.copyWith(albumDetails: value));
     });
   }
 }
@@ -81,10 +81,10 @@ abstract class _$AlbumDetailsStateCopyWith<$Res>
           _AlbumDetailsState value, $Res Function(_AlbumDetailsState) then) =
       __$AlbumDetailsStateCopyWithImpl<$Res>;
   @override
-  $Res call({AlbumDetails album});
+  $Res call({AlbumDetails albumDetails});
 
   @override
-  $AlbumDetailsCopyWith<$Res> get album;
+  $AlbumDetailsCopyWith<$Res> get albumDetails;
 }
 
 /// @nodoc
@@ -100,12 +100,12 @@ class __$AlbumDetailsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? album = freezed,
+    Object? albumDetails = freezed,
   }) {
     return _then(_AlbumDetailsState(
-      album: album == freezed
-          ? _value.album
-          : album // ignore: cast_nullable_to_non_nullable
+      albumDetails: albumDetails == freezed
+          ? _value.albumDetails
+          : albumDetails // ignore: cast_nullable_to_non_nullable
               as AlbumDetails,
     ));
   }
@@ -114,28 +114,29 @@ class __$AlbumDetailsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AlbumDetailsState implements _AlbumDetailsState {
-  const _$_AlbumDetailsState({this.album = const AlbumDetails()});
+  const _$_AlbumDetailsState({this.albumDetails = const AlbumDetails()});
 
   @JsonKey(defaultValue: const AlbumDetails())
   @override
-  final AlbumDetails album;
+  final AlbumDetails albumDetails;
 
   @override
   String toString() {
-    return 'AlbumDetailsState(album: $album)';
+    return 'AlbumDetailsState(albumDetails: $albumDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AlbumDetailsState &&
-            (identical(other.album, album) ||
-                const DeepCollectionEquality().equals(other.album, album)));
+            (identical(other.albumDetails, albumDetails) ||
+                const DeepCollectionEquality()
+                    .equals(other.albumDetails, albumDetails)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(album);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(albumDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -144,10 +145,11 @@ class _$_AlbumDetailsState implements _AlbumDetailsState {
 }
 
 abstract class _AlbumDetailsState implements AlbumDetailsState {
-  const factory _AlbumDetailsState({AlbumDetails album}) = _$_AlbumDetailsState;
+  const factory _AlbumDetailsState({AlbumDetails albumDetails}) =
+      _$_AlbumDetailsState;
 
   @override
-  AlbumDetails get album => throw _privateConstructorUsedError;
+  AlbumDetails get albumDetails => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AlbumDetailsStateCopyWith<_AlbumDetailsState> get copyWith =>
