@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:lastfm/infrastructure/environment/env.dart';
 
 import 'presentation/navigation/navigation.dart';
 import 'presentation/navigation/routes.dart';
@@ -27,6 +28,7 @@ void runMainApp() async {
         initialRoute: Routes.initialRoute,
         getPages: Navigation.getRoutes,
         defaultTransition: Transition.cupertino,
+        debugShowCheckedModeBanner: Get.find<Env>().showDebugBanner,
         enableLog: true,
         themeMode: ThemeMode.dark,
         theme: ThemeData.light(),
