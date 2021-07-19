@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lastfm/domain/repositories/i_album_repository.dart';
 import 'package:lastfm/domain/states/home_state.dart';
@@ -6,6 +7,7 @@ class HomeViewController extends GetxController with StateMixin<HomeState> {
   final IAlbumRepository albumRepository;
 
   final RxString searchInput = ''.obs;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   HomeViewController({
     required this.albumRepository,
@@ -37,12 +39,14 @@ class HomeViewController extends GetxController with StateMixin<HomeState> {
   }
 
   void searchAlbumsByName(String name) async {
-    change(HomeState(
-        albums: await albumRepository.searchAlbumsByName(name: name).then(
-              (either) => either.fold(
-                (l) => [],
-                (r) => r,
-              ),
-            )));
+    if (formKey.currentState!.validate()) {
+      change(HomeState(
+          albums: await albumRepository.searchAlbumsByName(name: name).then(
+                (either) => either.fold(
+                  (l) => [],
+                  (r) => r,
+                ),
+              )));
+    }
   }
 }

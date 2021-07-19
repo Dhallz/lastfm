@@ -18,7 +18,6 @@ class RestApiLogger extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     debugPrint('COMPUTE TIME : ${stopwatch.elapsed}');
-    // - TOTAL : ${_computeTime.toString()}
     _computeTime = Duration();
     return super.onResponse(response, handler);
   }

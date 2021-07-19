@@ -17,7 +17,6 @@ class AlbumDetailsView extends GetView<AlbumDetailsViewController> {
     return Scaffold(
       body: controller.obx(
         (state) => Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Stack(
               children: [
@@ -31,7 +30,7 @@ class AlbumDetailsView extends GetView<AlbumDetailsViewController> {
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black,
-                            offset: Offset(0, 4), //(x,y)
+                            offset: Offset(0, 4),
                             blurRadius: 3.0,
                           ),
                         ],
@@ -47,7 +46,6 @@ class AlbumDetailsView extends GetView<AlbumDetailsViewController> {
                     bottom: 10,
                     left: 10,
                     child: Container(
-                      // padding: EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(50),

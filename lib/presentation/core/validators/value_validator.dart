@@ -21,7 +21,7 @@ Either<ValueFailure<String>, String> validateOnlySpecialChar(
   if (input.isEmpty) {
     return right(input);
   } else {
-    if (!input.contains(RegExp(r'/[A-Za-z0-9]/'))) {
+    if (input.contains(RegExp(r'[A-Za-z0-9]'))) {
       return right(input);
     } else {
       return left(

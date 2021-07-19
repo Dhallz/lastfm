@@ -2,14 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lastfm/presentation/core/widgets/album_search_form_field.dart';
+import 'package:lastfm/presentation/core/widgets/search_bar.dart';
 import 'package:lastfm/presentation/widgets/album_card.dart';
 import 'home_view_controller.dart';
 
 class HomeView extends GetView<HomeViewController> {
   HomeView({Key? key}) : super(key: key);
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,38 +25,7 @@ class HomeView extends GetView<HomeViewController> {
             padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      Form(
-                        key: _formKey,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        child: AlbumSearchFormField(
-                          input: controller.searchInput,
-                          onFieldSubmitted: (_) {
-                            if (_formKey.currentState!.validate()) {
-                              controller.searchAlbumsByName(
-                                  controller.searchInput.value);
-                            }
-                          },
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        child: IconButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              controller.searchAlbumsByName(
-                                  controller.searchInput.value);
-                            }
-                          },
-                          icon: Icon(Icons.search),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                SearchBar(),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, bottom: 32),
                   child: Row(
